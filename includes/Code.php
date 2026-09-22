@@ -62,14 +62,14 @@ final class Code
     {
         $slug = (string) $type['slug'];
 
-        return 'register_post_type(' . var_export($slug, true) . ', ' . self::export(Registrar::args($type)) . ");\n";
+        return 'register_post_type(' . self::literal($slug) . ', ' . self::export(Registrar::args($type)) . ");\n";
     }
 
     /**
      * Render a PHP value with trailing commas and four-space indentation.
      *
      * Booleans become `true` or `false`. Integers stay unquoted. Everything
-     * else is exported with `var_export()` so quotes and Persian text are safe.
+     * else is exported as a single-quoted PHP string so quotes and Persian text are safe.
      *
      * @param mixed $value Value stored in a register_post_type() argument.
      * @param int   $depth Indentation depth. Zero is the root array.
@@ -90,7 +90,7 @@ final class Code
                 return 'null';
             }
 
-            return var_export((string) $value, true);
+            return self::literal((string) $value);
         }
 
         if ($value === []) {
@@ -103,11 +103,25 @@ final class Code
         $lines = [];
 
         foreach ($value as $key => $item) {
-            $prefix = $listed ? '' : var_export((string) $key, true) . ' => ';
+            $prefix = $listed ? '' : self::literal((string) $key) . ' => ';
             $lines[] = $pad . $prefix . self::export($item, $depth + 1);
         }
 
         return "[\n" . implode(",\n", $lines) . ",\n" . $close . ']';
+    }
+
+    /**
+     * Quote a string the way a PHP source literal needs it.
+     *
+     * @param string $value Text to place inside single quotes.
+     * @return string Single-quoted PHP string.
+     */
+    private static function literal(string $value): string
+    {
+        return "'" . strtr($value, [
+            '\\' => '\\\\',
+            "'" => "\\'",
+        ]) . "'";
     }
 
     /**

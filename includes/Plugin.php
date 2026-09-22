@@ -49,6 +49,7 @@ final class Plugin
      */
     public static function loadTextdomain(): void
     {
+        // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- Persian ships in this plugin until a WordPress.org language pack exists.
         load_plugin_textdomain(
             'post-type-generator',
             false,

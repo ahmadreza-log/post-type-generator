@@ -33,7 +33,7 @@ Deleting a type does not delete its posts. They stay hidden until that key is re
 ## Hook
 
 ```php
-add_filter('ptg_post_type_args', function (array $args, array $type): array {
+add_filter('posttypegenerator_post_type_args', function (array $args, array $type): array {
     return $args;
 }, 10, 2);
 ```

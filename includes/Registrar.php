@@ -12,7 +12,7 @@
  *
  * Developers can replace the argument array for one type:
  *
- *     add_filter('ptg_post_type_args', function (array $args, array $type): array {
+ *     add_filter('posttypegenerator_post_type_args', function (array $args, array $type): array {
  *         $args['menu_position'] = 26;
  *         return $args;
  *     }, 10, 2);
@@ -70,7 +70,7 @@ final class Registrar
                 continue;
             }
 
-            $args = apply_filters('ptg_post_type_args', self::args($type), $type);
+            $args = apply_filters('posttypegenerator_post_type_args', self::args($type), $type);
 
             if (!is_array($args)) {
                 continue;

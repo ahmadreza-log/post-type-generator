@@ -81,7 +81,9 @@ final class Admin
      */
     public static function highlight(?string $file): ?string
     {
-        $page = isset($_GET['page']) ? sanitize_key(wp_unslash((string) $_GET['page'])) : '';
+        global $plugin_page;
+
+        $page = is_string($plugin_page) ? $plugin_page : '';
 
         if ($page === 'post-type-generator' || $page === 'post-type-generator-new') {
             return 'post-type-generator';
@@ -182,7 +184,9 @@ final class Admin
      */
     public static function handleRequest(): void
     {
-        if (strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? '')) !== 'POST') {
+        $method = isset($_SERVER['REQUEST_METHOD']) ? strtoupper(sanitize_text_field(wp_unslash($_SERVER['REQUEST_METHOD']))) : '';
+
+        if ($method !== 'POST') {
             return;
         }
 
@@ -192,15 +196,17 @@ final class Admin
 
         check_admin_referer('ptg_manage', 'ptg_nonce');
 
-        $action = isset($_POST['ptg_action']) ? sanitize_key(wp_unslash((string) $_POST['ptg_action'])) : '';
+        $posted = wp_unslash($_POST);
+        $input = is_array($posted) ? $posted : [];
+        $action = isset($input['ptg_action']) ? sanitize_key((string) $input['ptg_action']) : '';
 
         if ($action === 'delete') {
-            self::handleDelete();
+            self::handleDelete($input);
             return;
         }
 
         if ($action === 'save') {
-            self::handleSave();
+            self::handleSave($input);
         }
     }
 
@@ -224,8 +230,10 @@ final class Admin
 
         check_ajax_referer('ptg_manage', 'ptg_nonce');
 
-        $action = isset($_POST['ptg_action']) ? sanitize_key(wp_unslash((string) $_POST['ptg_action'])) : '';
-        $result = $action === 'delete' ? self::discard() : self::commit();
+        $posted = wp_unslash($_POST);
+        $input = is_array($posted) ? $posted : [];
+        $action = isset($input['ptg_action']) ? sanitize_key((string) $input['ptg_action']) : '';
+        $result = $action === 'delete' ? self::discard($input) : self::commit($input);
 
         if (is_wp_error($result)) {
             wp_send_json_error([
@@ -250,9 +258,11 @@ final class Admin
     {
         self::guard();
 
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- These query arguments only choose which dialog to open.
         $action = isset($_GET['action']) ? sanitize_key(wp_unslash((string) $_GET['action'])) : '';
         $slug = isset($_GET['slug']) ? sanitize_key(wp_unslash((string) $_GET['slug'])) : '';
         $open = isset($_GET['ptg_open']) ? sanitize_key(wp_unslash((string) $_GET['ptg_open'])) : '';
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
 
         if ($action === 'edit' || $action === 'export') {
             $open = $slug;
@@ -275,9 +285,9 @@ final class Admin
         exit;
     }
 
-    private static function handleSave(): void
+    private static function handleSave(array $input): void
     {
-        $result = self::commit();
+        $result = self::commit($input);
 
         if (is_wp_error($result)) {
             return;
@@ -287,9 +297,9 @@ final class Admin
         exit;
     }
 
-    private static function handleDelete(): void
+    private static function handleDelete(array $input): void
     {
-        $result = self::discard();
+        $result = self::discard($input);
 
         if (is_wp_error($result)) {
             self::$error = $result->get_error_message();
@@ -306,13 +316,12 @@ final class Admin
      * A validation error is kept on this request so a no-JavaScript POST can
      * paint the dialog again. The Ajax caller reads the same error object.
      *
+     * @param array<string, mixed> $input Submitted fields. The nonce is already checked.
      * @return string|\WP_Error Notice code `created` or `updated`.
      */
-    private static function commit(): string|\WP_Error
+    private static function commit(array $input): string|\WP_Error
     {
-        $input = wp_unslash($_POST);
-
-        if (!is_array($input)) {
+        if ($input === []) {
             return new \WP_Error(
                 'ptg_input',
                 __('The post type could not be saved. Please try again.', 'post-type-generator')
@@ -337,18 +346,19 @@ final class Admin
     /**
      * Remove one saved definition. Posts that use the key stay in the database.
      *
+     * @param array<string, mixed> $input Submitted fields. The nonce is already checked.
      * @return string|\WP_Error Notice code `deleted`.
      */
-    private static function discard(): string|\WP_Error
+    private static function discard(array $input): string|\WP_Error
     {
         $slug = '';
 
-        if (isset($_POST['original_slug'])) {
-            $slug = sanitize_key(wp_unslash((string) $_POST['original_slug']));
+        if (isset($input['original_slug'])) {
+            $slug = sanitize_key((string) $input['original_slug']);
         }
 
-        if ($slug === '' && isset($_POST['slug'])) {
-            $slug = sanitize_key(wp_unslash((string) $_POST['slug']));
+        if ($slug === '' && isset($input['slug'])) {
+            $slug = sanitize_key((string) $input['slug']);
         }
 
         if ($slug === '' || !Store::delete($slug)) {
@@ -434,7 +444,7 @@ final class Admin
 
                 echo '<tr>';
                 echo '<td class="ptg-title">';
-                echo '<script type="application/json" class="ptg-record">' . self::json(self::record($row, $slug)) . '</script>';
+                echo '<script type="application/json" class="ptg-record">' . wp_json_encode(self::record($row, $slug), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . '</script>';
                 echo '<div class="ptg-identity">';
                 echo '<span class="dashicons ' . esc_attr($icon) . '" aria-hidden="true"></span>';
                 echo '<div>';
@@ -480,10 +490,10 @@ final class Admin
             }
 
             echo '</tbody></table></div>';
-            echo '<script type="application/json" id="ptg-bundle">' . self::json(Code::bundle($types)) . '</script>';
+            echo '<script type="application/json" id="ptg-bundle">' . wp_json_encode(Code::bundle($types), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . '</script>';
         }
 
-        echo '<script type="application/json" id="ptg-blank">' . self::json(self::record(Store::defaults(), '')) . '</script>';
+        echo '<script type="application/json" id="ptg-blank">' . wp_json_encode(self::record(Store::defaults(), ''), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . '</script>';
         self::renderDialog($type, $original, $stored, $hold);
         self::footer();
     }
@@ -869,6 +879,7 @@ final class Admin
             echo '<div class="notice notice-error"><p>' . esc_html(self::$error) . '</p></div>';
         }
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Set by the redirect after a verified save or delete.
         $code = isset($_GET['ptg_notice']) ? sanitize_key(wp_unslash((string) $_GET['ptg_notice'])) : '';
         $messages = [
             'created' => __('Post type created.', 'post-type-generator'),
@@ -961,17 +972,26 @@ final class Admin
      */
     private static function counts(): array
     {
+        $cached = wp_cache_get('counts', 'post-type-generator');
+
+        if (is_array($cached)) {
+            return $cached;
+        }
+
         global $wpdb;
 
         $counts = [];
 
         foreach (array_keys(Store::all()) as $slug) {
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- wp_count_posts() skips a type that is saved but not registered.
             $counts[$slug] = (int) $wpdb->get_var($wpdb->prepare(
                 "SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_type = %s AND post_status <> %s",
                 $slug,
                 'auto-draft'
             ));
         }
+
+        wp_cache_set('counts', $counts, 'post-type-generator');
 
         return $counts;
     }
@@ -1021,19 +1041,6 @@ final class Admin
             'entries' => $ready ? admin_url('edit.php?post_type=' . rawurlencode($slug)) : '',
             'entry' => $ready ? admin_url('post-new.php?post_type=' . rawurlencode($slug)) : '',
         ];
-    }
-
-    /**
-     * Encode a dialog payload so it can sit inside a script tag.
-     *
-     * @param mixed $value Value to encode.
-     * @return string JSON text, or `{}` when encoding fails.
-     */
-    private static function json(mixed $value): string
-    {
-        $encoded = wp_json_encode($value, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
-
-        return is_string($encoded) ? $encoded : '{}';
     }
 
     private static function guard(): void
