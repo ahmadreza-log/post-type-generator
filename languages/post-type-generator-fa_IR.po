@@ -1,0 +1,428 @@
+# Copyright (C) 2026 Ahmadreza Ebrahimi
+# This file is distributed under the GPL-2.0-or-later license.
+msgid ""
+msgstr ""
+"Project-Id-Version: Post Type Generator 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ahmadreza-log/post-type-generator\n"
+"POT-Creation-Date: 2026-09-22 08:00+0000\n"
+"PO-Revision-Date: 2026-09-22 08:00+0000\n"
+"Last-Translator: Ahmadreza Ebrahimi\n"
+"Language-Team: Persian\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Domain: post-type-generator\n"
+
+msgid "Post Type Generator"
+msgstr "تولیدکننده نوع نوشته"
+
+msgid "Create custom post types from the WordPress admin and export their registration code."
+msgstr "نوع نوشته سفارشی را از پیشخوان وردپرس بسازید و کد ثبت آن را دریافت کنید."
+
+msgid "Ahmadreza Ebrahimi"
+msgstr "احمدرضا ابراهیمی"
+
+msgid "Manage"
+msgstr "مدیریت"
+
+msgid "Add Post Type"
+msgstr "افزودن نوع نوشته"
+
+msgid "Close"
+msgstr "بستن"
+
+msgid "All Post Types"
+msgstr "همه نوع‌نوشته‌ها"
+
+msgid "Delete this post type? Saved posts stay in the database, but they stay hidden until this key is registered again."
+msgstr "این نوع نوشته حذف شود؟ نوشته‌های ذخیره‌شده در پایگاه داده می‌مانند، ولی تا وقتی همین کلید دوباره ثبت نشود پنهان می‌مانند."
+
+msgid "Copied."
+msgstr "کپی شد."
+
+msgid "You do not have permission to manage post types."
+msgstr "شما اجازه مدیریت نوع نوشته‌ها را ندارید."
+
+msgid "This post type no longer exists."
+msgstr "این نوع نوشته دیگر وجود ندارد."
+
+msgid "Create a custom post type here. It is registered while this plugin is active, and you can export the PHP if you want to keep it in code."
+msgstr "نوع نوشته سفارشی را اینجا بسازید. تا وقتی این افزونه فعال است ثبت می‌شود، و اگر بخواهید آن را در کد نگه دارید می‌توانید PHP را خروجی بگیرید."
+
+msgid "No post types yet."
+msgstr "هنوز نوع نوشته‌ای نیست."
+
+msgid "Export PHP"
+msgstr "خروجی PHP"
+
+msgid "Post type"
+msgstr "نوع نوشته"
+
+msgid "Key"
+msgstr "کلید"
+
+msgid "Visibility"
+msgstr "نمایش"
+
+msgid "Archive"
+msgstr "بایگانی"
+
+msgid "Entries"
+msgstr "موارد"
+
+msgid "Actions"
+msgstr "عملیات"
+
+msgid "Active"
+msgstr "فعال"
+
+msgid "Inactive"
+msgstr "غیرفعال"
+
+msgid "Settings"
+msgstr "تنظیمات"
+
+msgid "View archive"
+msgstr "مشاهده بایگانی"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Edit Post Type"
+msgstr "ویرایش نوع نوشته"
+
+msgid "This post type could not be found."
+msgstr "این نوع نوشته پیدا نشد."
+
+msgid "New Post Type"
+msgstr "نوع نوشته تازه"
+
+msgid "Nothing to export yet."
+msgstr "هنوز چیزی برای خروجی نیست."
+
+msgid "Paste this into a plugin or functions.php only if this plugin will be turned off. While Post Type Generator is active, the post type is already registered."
+msgstr "این کد را فقط وقتی در یک افزونه یا functions.php بگذارید که بخواهید این افزونه را خاموش کنید. تا وقتی تولیدکننده نوع نوشته فعال است، نوع نوشته از قبل ثبت شده است."
+
+msgid "Basic"
+msgstr "پایه"
+
+msgid "Singular name"
+msgstr "نام مفرد"
+
+msgid "Book"
+msgstr "کتاب"
+
+msgid "Plural name"
+msgstr "نام جمع"
+
+msgid "Books"
+msgstr "کتاب‌ها"
+
+msgid "Description"
+msgstr "توضیح"
+
+msgid "Shown in the admin and used as the post type description."
+msgstr "در پیشخوان نشان داده می‌شود و توضیح نوع نوشته است."
+
+msgid "Post type key"
+msgstr "کلید نوع نوشته"
+
+msgid "Lowercase English letters, numbers, and underscores. Maximum 20 characters. It cannot be changed later."
+msgstr "حروف کوچک انگلیسی، عدد و زیرخط. حداکثر ۲۰ نویسه. بعداً قابل تغییر نیست."
+
+msgid "Enabled"
+msgstr "فعال"
+
+msgid "Register this post type. Turn this off to keep the settings without showing it on the site."
+msgstr "این نوع نوشته را ثبت می‌کند. اگر خاموش باشد تنظیمات می‌ماند، ولی در سایت نشان داده نمی‌شود."
+
+msgid "Public"
+msgstr "عمومی"
+
+msgid "Visible on the site and in search."
+msgstr "در سایت و جستجو دیده می‌شود."
+
+msgid "Show in admin"
+msgstr "نمایش در پیشخوان"
+
+msgid "Show the list and edit screens."
+msgstr "فهرست و صفحه ویرایش را نشان می‌دهد."
+
+msgid "Show in REST"
+msgstr "نمایش در REST"
+
+msgid "Required for the block editor."
+msgstr "برای ویرایشگر بلوکی لازم است."
+
+msgid "Has archive"
+msgstr "دارای بایگانی"
+
+msgid "Public archive page for this post type."
+msgstr "صفحه بایگانی عمومی برای این نوع نوشته."
+
+msgid "Hierarchical"
+msgstr "سلسله‌مراتبی"
+
+msgid "Parent and child items, similar to Pages."
+msgstr "آیتم مادر و فرزند، شبیه برگه‌ها."
+
+msgid "Exclude from search"
+msgstr "حذف از جستجو"
+
+msgid "Leave this type out of site search."
+msgstr "این نوع را از جستجوی سایت کنار می‌گذارد."
+
+msgid "URL slug"
+msgstr "نامک نشانی"
+
+msgid "Used in the permalink. Leave empty to use the post type key."
+msgstr "در پیوند یکتا استفاده می‌شود. اگر خالی باشد از کلید نوع نوشته استفاده می‌شود."
+
+msgid "With front"
+msgstr "همراه پیشوند"
+
+msgid "Include the permalink front base, such as /blog/."
+msgstr "پایه جلویی پیوند یکتا را اضافه می‌کند، مثل /blog/."
+
+msgid "Features"
+msgstr "قابلیت‌ها"
+
+msgid "Choose what the edit screen supports. Page attributes are added automatically when the type is hierarchical."
+msgstr "انتخاب کنید صفحه ویرایش چه چیزهایی را پشتیبانی کند. اگر نوع نوشته سلسله‌مراتبی باشد، ویژگی‌های برگه خودکار اضافه می‌شود."
+
+msgid "Taxonomies"
+msgstr "طبقه‌بندی‌ها"
+
+msgid "Attach existing taxonomies."
+msgstr "طبقه‌بندی‌های موجود را وصل کنید."
+
+msgid "No taxonomies with an admin screen are available."
+msgstr "طبقه‌بندی دارای صفحه پیشخوان در دسترس نیست."
+
+msgid "Menu"
+msgstr "فهرست"
+
+msgid "Menu icon"
+msgstr "آیکن فهرست"
+
+msgid "Dashicon class, for example dashicons-book."
+msgstr "کلاس Dashicon، برای مثال dashicons-book."
+
+msgid "Search icons"
+msgstr "جستجوی آیکن‌ها"
+
+msgid "Menu position"
+msgstr "جایگاه فهرست"
+
+msgid "Optional. Lower numbers sit higher in the admin menu. Leave empty for the default position."
+msgstr "اختیاری. عدد کوچک‌تر بالاتر در فهرست پیشخوان می‌نشیند. برای جایگاه پیش‌فرض خالی بگذارید."
+
+msgid "Save"
+msgstr "ذخیره"
+
+msgid "Save Post Type"
+msgstr "ذخیره نوع نوشته"
+
+msgid "Create Post Type"
+msgstr "ساخت نوع نوشته"
+
+msgid "Open entries"
+msgstr "باز کردن موارد"
+
+msgid "Add entry"
+msgstr "افزودن مورد"
+
+msgid "Delete post type"
+msgstr "حذف نوع نوشته"
+
+msgid "Saved posts stay in the database."
+msgstr "نوشته‌های ذخیره‌شده در پایگاه داده می‌مانند."
+
+msgid "None"
+msgstr "هیچ"
+
+msgid "Summary"
+msgstr "خلاصه"
+
+msgid "Status"
+msgstr "وضعیت"
+
+msgid "Generated PHP"
+msgstr "PHP تولیدشده"
+
+msgid "Copy code"
+msgstr "کپی کد"
+
+msgid "The post type could not be saved. Please try again."
+msgstr "نوع نوشته ذخیره نشد. دوباره تلاش کنید."
+
+msgid "Post type created."
+msgstr "نوع نوشته ساخته شد."
+
+msgid "Post type updated."
+msgstr "نوع نوشته به‌روزرسانی شد."
+
+msgid "Post type deleted. Saved posts stay in the database."
+msgstr "نوع نوشته حذف شد. نوشته‌های ذخیره‌شده در پایگاه داده می‌مانند."
+
+msgid "Admin only"
+msgstr "فقط پیشخوان"
+
+msgid "Hidden"
+msgstr "پنهان"
+
+msgid "Yes"
+msgstr "بله"
+
+msgid "No"
+msgstr "خیر"
+
+msgid "Title"
+msgstr "عنوان"
+
+msgid "Editor"
+msgstr "ویرایشگر"
+
+msgid "Excerpt"
+msgstr "چکیده"
+
+msgid "Featured image"
+msgstr "تصویر شاخص"
+
+msgid "Comments"
+msgstr "دیدگاه‌ها"
+
+msgid "Trackbacks"
+msgstr "دنبالک‌ها"
+
+msgid "Revisions"
+msgstr "رونوشت‌ها"
+
+msgid "Author"
+msgstr "نویسنده"
+
+msgid "Page attributes"
+msgstr "ویژگی‌های برگه"
+
+msgid "Custom fields"
+msgstr "زمینه‌های سفارشی"
+
+msgid "Post formats"
+msgstr "قالب‌های نوشته"
+
+msgid "Add New"
+msgstr "افزودن"
+
+msgid "Add New %s"
+msgstr "افزودن %s"
+
+msgid "Edit %s"
+msgstr "ویرایش %s"
+
+msgid "New %s"
+msgstr "%s تازه"
+
+msgid "View %s"
+msgstr "مشاهده %s"
+
+msgid "Browse %s"
+msgstr "مرور %s"
+
+msgid "Search %s"
+msgstr "جستجوی %s"
+
+msgid "No %s found."
+msgstr "%s پیدا نشد."
+
+msgid "No %s found in Trash."
+msgstr "%s در زباله‌دان پیدا نشد."
+
+msgid "Parent %s:"
+msgstr "%s مادر:"
+
+msgid "All %s"
+msgstr "همه %s"
+
+msgid "%s Archives"
+msgstr "بایگانی %s"
+
+msgid "%s Attributes"
+msgstr "ویژگی‌های %s"
+
+msgid "Insert into %s"
+msgstr "درج در %s"
+
+msgid "Uploaded to this %s"
+msgstr "بارگذاری‌شده در این %s"
+
+msgid "Set featured image"
+msgstr "تنظیم تصویر شاخص"
+
+msgid "Remove featured image"
+msgstr "حذف تصویر شاخص"
+
+msgid "Use as featured image"
+msgstr "استفاده به‌عنوان تصویر شاخص"
+
+msgid "Filter %s list"
+msgstr "پالایش فهرست %s"
+
+msgid "Filter by date"
+msgstr "پالایش بر اساس تاریخ"
+
+msgid "%s list navigation"
+msgstr "پیمایش فهرست %s"
+
+msgid "%s list"
+msgstr "فهرست %s"
+
+msgid "%s published."
+msgstr "%s منتشر شد."
+
+msgid "%s published privately."
+msgstr "%s به‌صورت خصوصی منتشر شد."
+
+msgid "%s reverted to draft."
+msgstr "%s به پیش‌نویس برگشت."
+
+msgid "%s trashed."
+msgstr "%s به زباله‌دان رفت."
+
+msgid "%s scheduled."
+msgstr "%s زمان‌بندی شد."
+
+msgid "%s updated."
+msgstr "%s به‌روزرسانی شد."
+
+msgid "%s Link"
+msgstr "پیوند %s"
+
+msgid "A link to a %s."
+msgstr "پیوندی به یک %s."
+
+msgid "Add %s title"
+msgstr "عنوان %s"
+
+msgid "The key must use lowercase English letters, numbers, and underscores."
+msgstr "کلید باید با حروف کوچک انگلیسی، عدد و زیرخط نوشته شود."
+
+msgid "The key must start with a letter, use only lowercase letters, numbers, and underscores, and be at most 20 characters."
+msgstr "کلید باید با حرف شروع شود، فقط حروف کوچک، عدد و زیرخط داشته باشد و حداکثر ۲۰ نویسه باشد."
+
+msgid "The post type key cannot be changed after it is created."
+msgstr "کلید نوع نوشته بعد از ساخت قابل تغییر نیست."
+
+msgid "This key is reserved by WordPress."
+msgstr "این کلید برای وردپرس رزرو شده است."
+
+msgid "A post type with this key is already registered."
+msgstr "نوع نوشته‌ای با این کلید از قبل ثبت شده است."
+
+msgid "Singular and plural names are required."
+msgstr "نام مفرد و نام جمع لازم است."
+
+msgid "Menu position must be a number from 0 to 999."
+msgstr "جایگاه فهرست باید عددی از ۰ تا ۹۹۹ باشد."
+
